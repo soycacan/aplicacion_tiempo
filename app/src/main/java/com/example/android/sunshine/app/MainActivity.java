@@ -8,6 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -57,6 +62,32 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//            crear arreglo con valores strings
+            String[] pronosticosArray = {
+                    "Hoy - parcialmente nublado - 30°",
+                    "Mañana - soleado - 33°",
+                    "Domingo - nublado - 22°",
+                    "Lunes - parcialmente soleado - 29°",
+                    "Martes - despejado - 32°",
+                    "Miercoles - despejado -31°",
+                    "Jueves - parcialmente soleado - 31°"
+            };
+//            crear una lista para los valores enunciados
+            List<String> pronosticoSemanal = new ArrayList<String>(Arrays.asList(pronosticosArray));
+//            clase Arrays no se modifican sus valores solo se setean
+
+//            parametros del adaptador:
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                    contexto
+                    getActivity(),
+//                    recurso plantilla layout xml
+                    R.layout.list_item_forecast,
+//                    campo plantilla
+                    R.id.list_item_forecast_textview,
+//                    valores o data
+                    pronosticoSemanal);
+
             return rootView;
         }
     }
